@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+
+ <script>
+   
+  fetch("http://api.open-notify.org/astros.json")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json) {
+    console.log(json);
+
+    let ol = document.createElement("ol") // create one <ol>
+      document.body.appendChild(ol)
+      ol.innerHTML="List of names and their craft:";
+
+    // get inside json object to the first key which is an array
+    let obj2 = json["people"];
+
+    for(const element in obj2 ){
+      console.log(obj2[element]["name"])
+     // let obj3 = obj2[element];// object ( name add iss)
+
+      //now I need to create an <li> inside <ol> with name
+        let li1 = document.createElement("li")
+        li1.innerHTML = obj2[element]["name"]
+          
+        ol.appendChild(li1)
+
+        // console.log(obj2[element]["craft"])
+
+        // another <li> inside the parent <li> with the craft
+        let li2 = document.createElement("li")
+        li2.innerHTML = obj2[element]["craft"]
+        li1.appendChild(li2)
+
+
+    }
+    
+  })
+
+
+
+   
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>
